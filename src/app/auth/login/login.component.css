@@ -160,6 +160,10 @@
 	text-decoration: underline;
   }
 
+.mat-error {
+	color: red;
+}
+
 @media (min-width: 250px) and (max-width: 667px) {
 	.form_container {
 		width: fit-content;
