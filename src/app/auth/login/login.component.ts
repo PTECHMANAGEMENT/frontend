@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { AuthService } from '../auth.service';
 function passwordValidator(control: FormControl) {
 	const password = control.value;
 	const hasUppercase = /[A-Z]/.test(password);
@@ -28,8 +28,8 @@ function passwordValidator(control: FormControl) {
 export class LoginComponent implements OnInit {
 	valid : boolean = false;
 	form: FormGroup = new FormGroup({
-		email: new FormControl(null, {
-			validators: [Validators.required, Validators.email],
+		username: new FormControl(null, {
+			validators: [Validators.required],
 		}),
 		password: new FormControl('', [
 			Validators.required,
@@ -38,11 +38,10 @@ export class LoginComponent implements OnInit {
 			passwordValidator
 		])
 	});
-	constructor() { }
+	constructor(public AuthService: AuthService) { }
 
 	ngOnInit(): void {
 	}
-
 
 	get passwordErrorMessage() {
 		const passwordControl = this.form.get('password');
@@ -59,13 +58,23 @@ export class LoginComponent implements OnInit {
 		}
 		this.valid = true;
 		return '';
-	  }
+	}
 
+	get usernameErrorMessage() {
+		const usernameControl = this.form.get('username');
+		if (usernameControl?.touched)
+		{
+			if (usernameControl?.hasError('required'))
+			  return 'Username is required';
+		}
+		this.valid = true;
+		return '';
+	}
 	onSubmit() {
 		if (!this.valid) {
 			return;
 		}
-
+		this.AuthService.isAuthenticated(this.form.value.username, this.form.value.password)
 	}
 
 }

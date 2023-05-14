@@ -180,7 +180,7 @@
 		  0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
 		border-radius: 11px;
 		font-family: "Inter", sans-serif;
-		margin: 0 auto;
+		margin: 10vh auto;
 	  }
 }
 @media (min-width: 1200px) and (max-width: 800px) {
@@ -199,6 +199,6 @@
 		  0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
 		border-radius: 11px;
 		font-family: "Inter", sans-serif;
-		margin: 0 auto;
+		margin: 10vh auto;
 	  }
 }
