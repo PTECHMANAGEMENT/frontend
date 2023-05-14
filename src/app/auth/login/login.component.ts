@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-function passwordValidator(control: FormControl) {
-	const password = control.value;
-	const hasUppercase = /[A-Z]/.test(password);
-	const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-	const valid = hasUppercase && hasSpecialChar;
+// function passwordValidator(control: FormControl) {
+// 	const password = control.value;
+// 	const hasUppercase = /[A-Z]/.test(password);
+// 	const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+// 	const valid = hasUppercase && hasSpecialChar;
 
-	if (!hasUppercase) {
-		return { missingUppercase: true };
-	}
+// 	if (!hasUppercase) {
+// 		return { missingUppercase: true };
+// 	}
 
-	if (!hasSpecialChar) {
-		return { missingSpecialChar: true };
-	}
+// 	if (!hasSpecialChar) {
+// 		return { missingSpecialChar: true };
+// 	}
 
-	return null;
-}
+// 	return null;
+// }
 
 @Component({
   selector: 'app-login',
@@ -33,9 +33,6 @@ export class LoginComponent implements OnInit {
 		}),
 		password: new FormControl('', [
 			Validators.required,
-			Validators.minLength(8),
-			Validators.maxLength(16),
-			passwordValidator
 		])
 	});
 	constructor() { }
@@ -44,27 +41,25 @@ export class LoginComponent implements OnInit {
 	}
 
 
-	get passwordErrorMessage() {
-		const passwordControl = this.form.get('password');
-		if (passwordControl?.touched)
-		{
-			if (passwordControl?.hasError('required'))
-			  return 'Password is required';
-			else if (passwordControl?.hasError('minlength'))
-			  return 'Password must be at least 8 characters long';
-			else if (passwordControl?.errors?.['missingUppercase'])
-				return 'Password must contain at least one uppercase letter';
-			else if (passwordControl?.errors?.['missingSpecialChar'])
-				return 'Password must contain at least one special character';
-		}
-		this.valid = true;
-		return '';
-	  }
+	// get passwordErrorMessage() {
+	// 	const passwordControl = this.form.get('password');
+	// 	if (passwordControl?.touched)
+	// 	{
+	// 		if (passwordControl?.hasError('required'))
+	// 		  return 'Password is required';
+	// 		else if (passwordControl?.hasError('minlength'))
+	// 		  return 'Password must be at least 8 characters long';
+	// 		else if (passwordControl?.errors?.['missingUppercase'])
+	// 			return 'Password must contain at least one uppercase letter';
+	// 		else if (passwordControl?.errors?.['missingSpecialChar'])
+	// 			return 'Password must contain at least one special character';
+	// 	}
+	// 	this.valid = true;
+	// 	return '';
+	//   }
 
 	onSubmit() {
-		if (!this.valid) {
-			return;
-		}
+		console.log(this.form);
 
 	}
 
